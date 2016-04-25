@@ -1,29 +1,26 @@
-<fieldset>
-    <legend>จัดการประเภทวัตถุมงคล
-        <a href="<?= Yii::app()->createUrl('sacred/indexProvince') ?>" class="btn btn-primary btn-sm"> 
-            <i class=" glyphicon glyphicon-plus"></i> ข้อมูลใหม่
-        </a>
-    </legend>
-    <form class="form-horizontal" method="post" action="<?= Yii::app()->createUrl('sacred/provinceSave') ?>">
-        <div class="form-group">
-            <label class="col-sm-2 control-label">ชื่อ</label>
-            <div class="col-sm-4">
-                <input type="hidden" name="id" value="<?= $province->pro_id ?>">
-                <input type="text" class="form-control" name="name_th" value="<?= $province->pro_name_th ?>" 
-                       required autofocus placeholder="ชื่อ">
-            </div>
+<h2 class="ui top attached header">
+    จัดการประเภทวัตถุมงคล
+    <a href="<?= Yii::app()->createUrl('sacred/indexProvince') ?>" class="ui button small blue"> 
+        <i class="plus icon"></i> ข้อมูลใหม่
+    </a>
+</h2>
+<div class="ui attached segment orange">
+    <form class="ui form" method="post" action="<?= Yii::app()->createUrl('sacred/provinceSave') ?>">
+        <div class="field">
+            <label>ชื่อ</label>
+            <input type="hidden" name="id" value="<?= $province->pro_id ?>">
+            <input type="text" class="form-control" name="name_th" value="<?= $province->pro_name_th ?>" 
+                   required autofocus placeholder="ชื่อ">
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">ชื่ออังกฤษ</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="name_eng" value="<?= $province->pro_name_eng ?>" 
-                       required autofocus placeholder="ชื่อ">
+        <div class="two fields">
+            <div class="field">
+                <label>ชื่ออังกฤษ</label>
+                <input type="text" name="name_eng" value="<?= $province->pro_name_eng ?>" 
+                       required autofocus placeholder="ชื่อ"/>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">ภูมิภาค</label>
-            <div class="col-sm-4">
-                <select class="form-control" name="region" required>
+            <div class="field">
+                <label>ภูมิภาค</label>
+                <select class="ui dropdown" name="region" required>
                     <?php foreach ($listRegion as $index => $region) { ?>
                         <?php if ($region->reg_id == $province->reg_id) { ?>
                             <option value="<?= $region->reg_id ?>" selected><?= $region->reg_name ?></option>
@@ -34,18 +31,14 @@
                 </select>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success">
-                    <i class="glyphicon glyphicon-saved"></i> บันทึก
-                </button>
-            </div>
+        <div class="actions">
+            <button type="submit" class="ui button green"><i class="save icon"></i> บันทึก</button>
+            <button type="reset" class="ui button orange"><i class="remove icon"></i> ล้างค่า</button>
         </div>
     </form>
-</fieldset>
-<fieldset>
-    <legend>ข้อมูลประเภทวัตถุมงคล</legend>
-    <table class="table table-bordered table-striped">
+</div>
+<div class="ui attached segment orange">
+    <table class="ui celled striped table orange">
         <thead>
             <tr>
                 <th>ลำดับ</th>
@@ -62,14 +55,13 @@
                     <td><?= $province->pro_name_th ?></td>
                     <td><?= $province->region->reg_name ?></td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/indexProvince/' . $province->pro_id) ?>" class="btn btn-warning btn-sm">แก้ไข</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/indexProvince/' . $province->pro_id) ?>" class="ui button small blue">แก้ไข</a>
                     </td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/provinceDelete/' . $province->pro_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/provinceDelete/' . $province->pro_id) ?>" class="ui button small red" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
                     </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
-
-</fieldset>
+</div>

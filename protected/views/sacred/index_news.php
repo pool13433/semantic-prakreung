@@ -1,70 +1,61 @@
 <?php
 $baseUrl = Yii::app()->baseUrl;
 ?>
-<fieldset>
-    <legend>จัดการข่าวประชาสัมพันธ์
-        <a href="<?= Yii::app()->createUrl('sacred/indexNews') ?>" class="btn btn-primary btn-sm"> 
-            <i class=" glyphicon glyphicon-plus"></i> ข้อมูลใหม่
-        </a>
-    </legend>
-    <form class="form-horizontal" enctype="multipart/form-data" name="form-news">
-        <div class="form-group">
-            <label class="col-sm-2 control-label">ข้อมูล</label>
-            <div class="col-sm-10">
-                <input type="hidden" name="id" value="<?= $news->news_id ?>">
-                <input type="text" class="form-control" name="title" value="<?= $news->news_title ?>" required/>
-            </div>
+<h2 class="ui top attached header">
+    จัดการข่าวประชาสัมพันธ์
+    <a href="<?= Yii::app()->createUrl('sacred/indexNews') ?>" class="ui button small blue"> 
+        <i class="plus icon"></i> ข้อมูลใหม่
+    </a>
+</h2>
+<div class="ui attached segment orange">
+    <form class="ui form" enctype="multipart/form-data" name="form-news">
+        <div class="field">
+            <label>ข้อมูล</label>
+            <input type="hidden" name="id" value="<?= $news->news_id ?>">
+            <input type="text" class="form-control" name="title" value="<?= $news->news_title ?>" required/>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">รายละเอียด</label>
-            <div class="col-sm-10">
-                <input type="hidden" name="detail" value="<?= $news->news_detail ?>"/>
-                <textarea cols="50" id="editor1" name="editor1" rows="10"><?= $news->news_detail ?></textarea>  
-            </div>
+        <div class="field">
+            <label>รายละเอียด</label>
+            <input type="hidden" name="detail" value="<?= $news->news_detail ?>"/>
+            <textarea cols="50" id="editor1" name="editor1" rows="10"><?= $news->news_detail ?></textarea>
         </div>
-        <div class="form-group">
-            <label class="control-label col-lg-2 col-md-2 col-sm-12 col-xs-12">ภาพ</label>
-            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 box-browse-upload">
+        <div class="field">
+            <label>ภาพ</label>
+            <div class="box-browse-upload">
                 <div class="dropzone" id="my-awesome-dropzone" >
                     <div class="dropzone-previews" style="max-width: 100%"></div>
                     <div class="fallback">
-                        <input name="file" type="file" multiple class="form-control"/>
+                        <input name="file" type="file" multiple class="ui button small blue"/>
                     </div>                        
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
-                <div class="row">
-                    <h2 class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">ภาพเดิม</h2>
-                </div>
-                <div class="row">
-                    <?php if (!empty($news->news_id)) { ?>
-                        <?php $imgs = SacredNewsImg::model()->findAllByAttributes(array('news_id' => $news->news_id)) ?>
-                        <?php foreach ($imgs as $index => $image) { ?>
-                            <div class="col-lg-6 image-container" onclick="removeImage(<?= $image->img_id ?>)">
-                                <img src="<?= $baseUrl . '/images' . $image->img_name ?>" class="img-thumbnail"/>
-                                <div class="after" title="ลบ">
-                                    <span class="zoom">
-                                        <i class="glyphicon glyphicon-remove-sign"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        <?php } ?> 
-                    <?php } ?>
-                </div>
-            </div>            
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="button" class="btn btn-success" id="btnSaveNews">
-                    <i class="glyphicon glyphicon-saved"></i> บันทึก
-                </button>
+        <div class="field">
+            <label>ภาพเดิม</label>
+            <div class="ui images">
+                <?php if (!empty($news->news_id)) { ?>
+                    <?php $imgs = SacredNewsImg::model()->findAllByAttributes(array('news_id' => $news->news_id)) ?>
+                    <?php foreach ($imgs as $index => $image) { ?>
+                        <div class="ui small image image-container" onclick="removeImage(<?= $image->img_id ?>)">
+                            <img src="<?= $baseUrl . '/images' . $image->img_name ?>" />
+                            <div class="after" title="ลบ">
+                                <span class="zoom">
+                                    <i class="glyphicon glyphicon-remove-sign"></i>
+                                </span>
+                            </div>
+                        </div>
+                    <?php } ?> 
+                <?php } ?>
             </div>
+        </div>    
+        <div class="actions">
+            <button type="submit" class="ui button green" id="btnSaveNews"><i class="save icon"></i> บันทึก</button>
+            <button type="reset" class="ui button orange"><i class="remove icon"></i> ล้างค่า</button>
         </div>
     </form>
-</fieldset>
-<fieldset>
-    <legend>ข้อมูลประเภทวัตถุมงคล</legend>
-    <table class="table table-bordered table-striped">
+</div>
+<div class="ui attached segment orange">
+    <table class="ui celled striped table orange">
         <thead>
             <tr>
                 <th>ลำดับ</th>
@@ -79,22 +70,20 @@ $baseUrl = Yii::app()->baseUrl;
                     <td><?= $news->news_id ?></td>
                     <td><?= $news->news_title ?></td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/indexNews/' . $news->news_id) ?>" class="btn btn-warning btn-sm">แก้ไข</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/indexNews/' . $news->news_id) ?>" class="ui button small blue">แก้ไข</a>
                     </td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/newsDelete/' . $news->news_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/newsDelete/' . $news->news_id) ?>" class="ui button small red" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
                     </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
-
-</fieldset>
+</div>
 
 <script type="text/javascript">
     var urlUpload = '<?= Yii::app()->createUrl('sacred/newsSave') ?>';
-    var sizeUpload = 3;
-    var MaximumSizeOfFile = (1024 * 1024) * sizeUpload;
+
     // The camelized version of the ID of the form element
     var myDropzone = {};
     Dropzone.options.myAwesomeDropzone = {

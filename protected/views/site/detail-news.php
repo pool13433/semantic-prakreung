@@ -1,49 +1,42 @@
 <?php
 $baseUrl = Yii::app()->baseUrl;
 ?>
-<!-- Content Begin-->
-<section id="main-content" style="margin-left: 0px;">
-    <section class="site-min-height">
-        <div class="row">
+<div class="ui grid">
 
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                <div class="panel panel-warning panel-news">
-                    <div class="panel-heading">
-                        <h1><strong><i class="glyphicon glyphicon-info-sign"></i> <u><?= $news->news_title ?></u></strong></h1>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <?= $news->news_detail ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <?php foreach ($listNewsDetail as $index => $img) { ?>
-                                <div class="col-lg-6 col-sm-6 col-sm-12">                                
-                                    <a class="fancybox" href="<?= $baseUrl . '/images' . $img->img_name ?>">                                       
-                                        <img class="img-responsive lazyload" alt="Responsive image"
-                                             data-src="<?= $baseUrl . '/images' . $img->img_name ?>">
-                                    </a>  
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                </div>
-
+    <div class="twelve wide column">     
+        <h2 class="ui top attached header">
+            <div class="ui huge breadcrumb">
+                <a href="<?= Yii::app()->createUrl('site/news') ?>" class="section">หน้าแรก ข่าวสารพระเครื่อง</a>
+                <i class="right angle icon divider"></i>
+                <div class="active section"> รายละเอียดของข่าว</div>
             </div>
-            <!-- Sidebar Right Begin-->
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <?php
-                $this->renderPartial('/sidebar_right', array(
-                    'listSacredObjectLastInsert' => $listSacredObjectLastInsert,
-                    'listSacredType' => $listSacredType,
-                    'listMemberLastInsert' => $listMemberLastInsert,
-                    'listRegion' => $listRegion
-                ))
-                ?>
+        </h2>       
+        <div class="ui attached segment orange">
+            <h2 class="ui top header">
+                <?= $news->news_title ?>
+            </h2>
+            <div class="description">
+                <?= $news->news_detail ?>
             </div>
-            <!-- Sidebar Right End -->
-
+            <div class="ui medium images">
+                <?php foreach ($listNewsDetail as $index => $img) { ?>
+                    <img class="ui image" data-src="<?= $baseUrl . '/images' . $img->img_name ?>">
+                <?php } ?>
+            </div>
         </div>
-    </section>
-</section>
+    </div>
+    <!-- Sidebar Right Begin-->
+    <div class="four wide column">
+        <?php
+        $this->renderPartial('/sidebar_right', array(
+            'listSacredObjectLastInsert' => $listSacredObjectLastInsert,
+            'listSacredType' => $listSacredType,
+            'listMemberLastInsert' => $listMemberLastInsert,
+            'listRegion' => $listRegion
+        ))
+        ?>
+        <!-- Sidebar Right End -->
+
+    </div>
+</div>
+

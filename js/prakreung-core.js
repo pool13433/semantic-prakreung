@@ -1,7 +1,10 @@
 //var MaximumSizeOfFile = (1024 * 1024) * 3;
+var sizeUpload = 3;
+var MaximumSizeOfFile = (1024 * 1024) * sizeUpload;
+
 
 $(document).ready(function () {
-    //customDatatable();
+    customDatatable();
     customPace();
     customCardBoxBealtiful();
     //customElevateZoom();
@@ -24,43 +27,29 @@ $(document).ready(function () {
             closable: true,
         }).sidebar('toggle');
     });
-
+    $('.dropdown.item').dropdown();
+    $('.dropdown.ui').dropdown();
 });
 
-
-
-
-$(document).on('click', 'a[class!="cke_button"]', function (e) {
-    //Pace.restart();
+$.extend(true, $.fn.dataTable.defaults, {
+    "language": {
+        "sProcessing": "กำลังดำเนินการ...",
+        "sLengthMenu": "แสดง_MENU_ แถว",
+        "sZeroRecords": "ไม่พบข้อมูล",
+        "sInfo": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+        "sInfoEmpty": "แสดง 0 ถึง 0 จาก 0 แถว",
+        "sInfoFiltered": "(กรองข้อมูล _MAX_ ทุกแถว)",
+        "sInfoPostFix": "",
+        "sSearch": "ค้นหา:",
+        "sUrl": "",
+        "oPaginate": {
+            "sFirst": "เิริ่มต้น",
+            "sPrevious": "ก่อนหน้า",
+            "sNext": "ถัดไป",
+            "sLast": "สุดท้าย"
+        }
+    }
 });
-
-
-$(document).ajaxStart(function () {
-
-});
-
-
-
-
-//$.extend(true, $.fn.dataTable.defaults, {
-//    "language": {
-//        "sProcessing": "กำลังดำเนินการ...",
-//        "sLengthMenu": "แสดง_MENU_ แถว",
-//        "sZeroRecords": "ไม่พบข้อมูล",
-//        "sInfo": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
-//        "sInfoEmpty": "แสดง 0 ถึง 0 จาก 0 แถว",
-//        "sInfoFiltered": "(กรองข้อมูล _MAX_ ทุกแถว)",
-//        "sInfoPostFix": "",
-//        "sSearch": "ค้นหา:",
-//        "sUrl": "",
-//        "oPaginate": {
-//            "sFirst": "เิริ่มต้น",
-//            "sPrevious": "ก่อนหน้า",
-//            "sNext": "ถัดไป",
-//            "sLast": "สุดท้าย"
-//        }
-//    }
-//});
 function customDatatable() {
     $('table').DataTable();
 }

@@ -1,29 +1,24 @@
-<fieldset>
-    <legend>จัดการกฏ
-        <a href="<?= Yii::app()->createUrl('sacred/indexRules') ?>" class="btn btn-primary btn-sm"> 
-            <i class=" glyphicon glyphicon-plus"></i> ข้อมูลใหม่
-        </a>
-    </legend>
-    <form class="form-horizontal" method="post" action="<?= Yii::app()->createUrl('sacred/rulesSave') ?>">
-        <div class="form-group">
-            <label class="col-sm-2 control-label">อธิบาย</label>
-            <div class="col-sm-8">
-                <input type="hidden" name="id" value="<?= $rules->rul_id ?>">
-                <textarea class="form-control" rows="5" name="desc" required><?= $rules->rul_desc ?></textarea>
-            </div>
+<h2 class="ui top attached header">
+    จัดการกฏ
+    <a href="<?= Yii::app()->createUrl('sacred/indexRules') ?>" class="ui button small blue"> 
+        <i class="plus icon"></i> ข้อมูลใหม่
+    </a>
+</h2>
+<div class="ui attached segment orange">
+    <form class="ui form" method="post" action="<?= Yii::app()->createUrl('sacred/rulesSave') ?>">
+        <div class="field">
+            <label>อธิบาย</label>
+            <input type="hidden" name="id" value="<?= $rules->rul_id ?>">
+            <textarea name="desc" required><?= $rules->rul_desc ?></textarea>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success">
-                    <i class="glyphicon glyphicon-saved"></i> บันทึก
-                </button>
-            </div>
+       <div class="actions">
+            <button type="submit" class="ui button green"><i class="save icon"></i> บันทึก</button>
+            <button type="reset" class="ui button orange"><i class="remove icon"></i> ล้างค่า</button>
         </div>
     </form>
-</fieldset>
-<fieldset>
-    <legend>ข้อมูลประเภทวัตถุมงคล</legend>
-    <table class="table table-bordered table-striped">
+</div>
+<div class="ui attached segment orange">
+    <table class="ui celled striped table orange">
         <thead>
             <tr>
                 <th>ลำดับ</th>
@@ -38,14 +33,13 @@
                     <td><?= $rules->rul_id ?></td>
                     <td><?= $rules->rul_desc ?></td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/indexRules/' . $rules->rul_id) ?>" class="btn btn-warning btn-sm">แก้ไข</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/indexRules/' . $rules->rul_id) ?>" class="ui button small blue">แก้ไข</a>
                     </td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/rulesDelete/' . $rules->rul_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/rulesDelete/' . $rules->rul_id) ?>" class="ui button small red" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
                     </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
-
-</fieldset>
+</div>

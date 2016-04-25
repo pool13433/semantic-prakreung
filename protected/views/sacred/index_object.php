@@ -5,39 +5,43 @@ if (!empty($sacred->obj_img)) {
     $image = $sacred->obj_img;
 }
 ?>
-<fieldset>
-    <legend>จัดการวัตถุมงคล</legend>
-    <form class="form-horizontal" method="post" action="<?= Yii::app()->createUrl('sacred/objectSave') ?>" enctype="multipart/form-data">
-        <div class="form-group">
-            <label class="control-label col-lg-3 col-md-3 col-sm-4 col-xs-4">รูปหลัก</label>
-            <div class="col-lg-3 col-md-6 col-sm-3 col-xs-7 box-browse-upload">
-                <input type="file" id="fileMain" name="fileMain" <?=(empty($sacred->obj_id) ? 'required' : '')?>/>
-                <a class="thumbnail">
-                    <img id="imgMain" class="img-rounded" style="max-width: 60%;" src="<?= $baseUrl . '/images' . $image ?>"/>
-                </a>
-                <span class="label label-warning">กรุณากรอกข้อมูล รูปหลักสินค้า</span>
+<h2 class="ui top attached header">
+    จัดการวัตถุมงคล
+    <a href="<?= Yii::app()->createUrl('sacred/index') ?>" class="ui button small blue"> 
+        <i class="plus icon"></i> ข้อมูลใหม่
+    </a>
+</h2>
+<div class="ui attached segment orange">
+    <form class="ui form" method="post" action="<?= Yii::app()->createUrl('sacred/objectSave') ?>" enctype="multipart/form-data">
+        <div class="field">
+            <label>รูปหลัก</label>
+            <div class="box-browse-upload">
+                <input type="file" id="fileMain" name="fileMain" <?= (empty($sacred->obj_id) ? 'required' : '') ?> 
+                       placeholder="กรุณากรอกข้อมูล รูปหลักสินค้า"
+                       accept=".jpg,.png,.jpeg,.gif"  class="ui button blue tiny"/>
+                <img id="imgMain" class="ui medium image" src="<?= $baseUrl . '/images' . $image ?>"/>
             </div>                
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">ชื่อ</label>
-            <div class="col-sm-4">
-                <input type="hidden" name="id" value="<?=$sacred->obj_id?>"/>
+        <div class=" three fields">
+            <div class="field">
+                <label>ชื่อ</label>
+                <input type="hidden" name="id" value="<?= $sacred->obj_id ?>"/>
                 <input type="text" class="form-control" name="name" value="<?= $sacred->obj_name ?>" required  placeholder="ชื่อ">
-            </div>
-            <label class="col-sm-1 control-label">ราคา</label>
-            <div class="col-sm-2">
+            </div>   
+            <div class="field">
+                <label>ราคา</label>
                 <input type="text" class="form-control" name="price" value="<?= $sacred->obj_price ?>" required placeholder="ราคา">
             </div>
-            <label class="col-sm-1 control-label">ปีที่สร้าง</label>
-            <div class="col-sm-2">
+            <div class="field">
+                <label>ปีที่สร้าง</label>
                 <input type="text" class="form-control" name="year" value="<?= $sacred->obj_born ?>"  
                        maxlength="4" placeholder="ปีที่สร้าง" required>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">ประเภทวัตถดิบที่ใช้ทำ</label>
-            <div class="col-sm-2">
-                <select class="form-control" name="type" required>
+        <div class="three fields">
+            <div class="field">
+                <label>ประเภทวัตถดิบที่ใช้ทำ</label>
+                <select class="ui dropdown" name="type" required>
                     <?php foreach ($listSacredType as $index => $type) { ?>
                         <?php if ($type->type_id == $sacred->type_id) { ?>
                             <option value="<?= $type->type_id ?>" selected><?= $type->type_name ?></option>
@@ -47,9 +51,9 @@ if (!empty($sacred->obj_img)) {
                     <?php } ?>
                 </select>
             </div>
-            <label class="col-sm-2 control-label">ต้นกำเนิดจากจังหวัด</label>
-            <div class="col-sm-3">
-                <select class="form-control" name="province" required>
+            <div class="field">
+                <label>ต้นกำเนิดจากจังหวัด</label>
+                <select class="ui dropdown" name="province" required>
                     <?php foreach ($listProvince as $index => $province) { ?>
                         <?php if ($province->pro_id == $sacred->pro_id) { ?>
                             <option value="<?= $province->pro_id ?>" selected><?= $province->pro_name_th ?></option>
@@ -60,22 +64,18 @@ if (!empty($sacred->obj_img)) {
                 </select>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">รายละเอียด</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" name="comment"><?= $sacred->obj_comment ?></textarea>
-            </div>
+        <div class="field">
+            <label>รายละเอียด</label>
+            <textarea class="form-control" name="comment"><?= $sacred->obj_comment ?></textarea>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success btn-lg">บันทึก</button>
-            </div>
+        <div class="actions">
+            <button type="submit" class="ui button green"><i class="save icon"></i> บันทึก</button>
+            <button type="reset" class="ui button orange"><i class="remove icon"></i> ล้างค่า</button>
         </div>
     </form>
-</fieldset>
-<fieldset>
-    <legend>จัดการวัตถุมงคล</legend>
-    <table class="table table-bordered table-striped">
+</div>
+<div class="ui attached segment orange">
+    <table class="ui celled striped table orange">
         <thead>
             <tr>
                 <th>ภาพ</th>
@@ -91,29 +91,29 @@ if (!empty($sacred->obj_img)) {
         <tbody>
             <?php foreach ($listSacredObject as $index => $object) { ?>
                 <tr>
-                    <td title="<?=$object->obj_img?>">
-                        <a href="<?= $baseUrl.'/images'.$object->obj_img ?>" class="thumbnail fancybox">
-                            <img src="<?= $baseUrl.'/images'.$object->obj_img ?>" 
+                    <td title="<?= $object->obj_img ?>">
+                        <a href="<?= $baseUrl . '/images' . $object->obj_img ?>" class="thumbnail fancybox">
+                            <img src="<?= $baseUrl . '/images' . $object->obj_img ?>" 
                                  style="max-height: 100px;max-width: 100px;"
                                  alt="...">
                         </a>
-                     </td>
+                    </td>
                     <td><?= $object->obj_name ?></td>
                     <td><?= $object->obj_price ?></td>                    
                     <td><?= $object->obj_born ?></td>
                     <td><?= $object->obj_comment ?></td>
                     <td style="text-align: center"><?= $object->count_img ?></td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/index/' . $object->obj_id) ?>" class="btn btn-warning btn-sm">แก้ไข</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/index/' . $object->obj_id) ?>" class="ui button small blue">แก้ไข</a>
                     </td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/objectDelete/' . $object->obj_id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/objectDelete/' . $object->obj_id) ?>" class="ui button small red" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
                     </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
-</fieldset>
+</div>
 <script type="text/javascript">
     $(function () {
         $('#imgMain').on('click', function () {

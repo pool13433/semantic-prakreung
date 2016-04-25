@@ -19,6 +19,7 @@ $baseUrl = Yii::app()->baseUrl;
         <!-- Semantic UI CSS -->
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/semantic/semantic.css" rel="stylesheet">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/dropzone/dropzone.css" rel="stylesheet">
+        <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/datatables/dataTables.semanticui.min.css" rel="stylesheet">
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
         <style type="text/css">
             @font-face {
@@ -39,14 +40,11 @@ $baseUrl = Yii::app()->baseUrl;
     </head>
 
     <body>
-        <?php //$this->renderPartial('/navbar-top') ?>
+        <?php $this->renderPartial('/navbar-top') ?>
         <?php $this->renderPartial('/sidebar-left') ?>
-        <div class="pusher">
+        <div class="pusher" style="margin-top: 70px;">
             <div id="fb-root"></div>
-            <div class="ui container">
-                <a href="#" class="sidebar-toggle" data-visible="open">
-                    <i class="bordered inverted teal sidebar icon large"></i>
-                </a>
+            <div class="ui container">                
                 <?php echo $content; ?>
             </div>
         </div> 
@@ -57,6 +55,8 @@ $baseUrl = Yii::app()->baseUrl;
         $cs->registerScriptFile($baseUrl . '/semantic/semantic.min.js');
         $cs->registerScriptFile($baseUrl . '/js/elevatezoom/jquery.elevatezoom.js');
         $cs->registerScriptFile($baseUrl . '/js/dropzone/dropzone.min.js');
+        $cs->registerScriptFile($baseUrl . '/js/datatables/jquery.dataTables.min.js');
+        $cs->registerScriptFile($baseUrl . '/js/datatables/dataTables.semanticui.min.js');
         $cs->registerScriptFile($baseUrl . '/js/prakreung-core.js');
         ?>
     </body>

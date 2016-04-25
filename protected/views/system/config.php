@@ -1,28 +1,28 @@
-<fieldset>
-    <legend>ตั้งค่าการใช้งานระบบ</legend>
-    <form class="form-horizontal" action="<?= Yii::app()->createUrl('System/SaveConfig') ?>" method="post">
+<h2 class="ui top attached header">
+    ตั้งค่าการใช้งานระบบ
+</h2>
+<div class="ui attached segment orange">
+    <form class="ui form" action="<?= Yii::app()->createUrl('System/SaveConfig') ?>" method="post">
         <?php foreach ($configs as $config) { ?>
-            <div class="form-group">
-                <label for="<?= $config->name ?>" class="col-sm-2 control-label"><?= $config->label ?></label>
-                <div class="col-lg-2 col-md-10 col-sm-10 col-xs-10">
-                    <?php if ($config->name == 'image_resize') { ?>
-                        <?php $percentResize = WebConfig::getPercentResize(); ?>
-                        <select class="form-control" name="<?= $config->name ?>" id="<?= $config->name ?>">
-                            <?php foreach ($percentResize as $key => $value) { ?>
-                                <?php if ($key == $config->value) { ?>
-                                    <option value="<?= $key ?>" selected><?= $value ?></option>
-                                <?php } else { ?>
-                                    <option value="<?= $key ?>"><?= $value ?></option>
-                                <?php } ?>
+            <div class="field">
+                <label for="<?= $config->name ?>"><?= $config->label ?></label>
+                <?php if ($config->name == 'image_resize') { ?>
+                    <?php $percentResize = WebConfig::getPercentResize(); ?>
+                    <select class=" ui dropdown" name="<?= $config->name ?>" id="<?= $config->name ?>">
+                        <?php foreach ($percentResize as $key => $value) { ?>
+                            <?php if ($key == $config->value) { ?>
+                                <option value="<?= $key ?>" selected><?= $value ?></option>
+                            <?php } else { ?>
+                                <option value="<?= $key ?>"><?= $value ?></option>
                             <?php } ?>
-                        </select>
-                    <?php } else { ?>
-                        <input type="number" class="form-control" id="<?= $config->name; ?>" 
-                               value="<?= $config->value; ?>" required 
-                               name="<?= $config->name ?>">
-                           <?php } ?>
-                </div>
-                <label class="col-sm-1 control-label"><?= $config->unit ?></label>
+                        <?php } ?>
+                    </select>
+                <?php } else { ?>
+                    <input type="number" id="<?= $config->name; ?>" 
+                           value="<?= $config->value; ?>" required 
+                           name="<?= $config->name ?>">
+                       <?php } ?>
+                <label><?= $config->unit ?></label>
             </div>
         <?php } ?>
         <div class="form-group">
@@ -33,5 +33,4 @@
             </div>
         </div>
     </form>
-
-</fieldset>
+</div>
