@@ -104,10 +104,10 @@ $baseUrl = Yii::app()->baseUrl;
         </div>
         <div class="ui actions center aligned segment">
             <button type="submit" class="ui button green submit" id="submit-all">
-                <i class="glyphicon glyphicon-gift"></i> ประกาศปล่อยเช่าทันที
+                <i class="save icon"></i> ประกาศปล่อยเช่าทันที
             </button>
             <button type="reset" class="ui button orange">
-                <i class="glyphicon glyphicon-remove"></i> เคลีย์ข้อมูล
+                <i class="remove icon"></i> เคลีย์ข้อมูล
             </button>
         </div>
     </form>

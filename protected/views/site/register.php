@@ -1,102 +1,77 @@
-<!-- BASIC FORM ELELEMNTS -->
-<form  id="form-register" class="form-horizontal style-form form-lg">
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            <h3><i class="fa fa-angle-right"></i> <?= (empty($form_title) ? 'ลงทะเบียนเพื่อเข้าร่วมเป็นสมาชิกของเรา' : $form_title) ?></h3>
-        </div>
-        <div class="panel-body">
-            <div class="row mt">
-                <div class="col-lg-12">
-                    <?php if (empty($profile->facebook_id) && empty(Yii::app()->session['member'])) { ?>
-                        <div class="form-group">
-                            <label for="username" class="col-sm-2 col-sm-2 control-label">username<small> *</small></label>
-                            <div class="col-sm-4">
-                                <input type="hidden" name="id" value="<?= $member->mem_id ?>">
-                                <input type="text" class="form-control input-lg" name="username" value="<?= $member->mem_username ?>">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="col-sm-2 col-sm-2 control-label">password <small> *</small></label>
-                            <div class="col-sm-4">
-                                <input type="password" class="form-control input-lg" name="password" id="password"  value="<?= $member->mem_password ?>">
-                            </div>
-                            <label for="confirm_password" class="col-sm-2 col-sm-2 control-label">confirm password <small> *</small></label>
-                            <div class="col-sm-4">
-                                <input type="password" class="form-control input-lg" name="confirm_password" id="confirm_password"  value="<?= $member->mem_password ?>">
-                            </div>
-                        </div>
-                    <?php } ?>
-
-                    <div class="form-group">
-                        <label for="fname" class="col-sm-2 col-sm-2 control-label">ชื่อจริง <small> *</small></label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control input-lg" name="fname" value="<?= $member->mem_fname ?>">
-                        </div>
+<h2 class="ui top attached header">
+    <?= (empty($form_title) ? 'ลงทะเบียนเพื่อเข้าร่วมเป็นสมาชิกของเรา' : $form_title) ?>
+</h2>
+<div class="ui attached segment orange">
+    <form  id="form-register" class="ui form">
+        <?php if (empty($profile->facebook_id) && empty(Yii::app()->session['member'])) { ?>
+            <div class="field">
+                <label for="username">username<small> *</small></label>
+                <input type="hidden" name="id" value="<?= $member->mem_id ?>">
+                <input type="text" name="username" value="<?= $member->mem_username ?>">
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label for="password">password <small> *</small></label>
+                    <div class="col-sm-4">
+                        <input type="password" name="password" id="password"  value="<?= $member->mem_password ?>">
                     </div>
-                    <div class="form-group">
-                        <label for="lname" class="col-sm-2 col-sm-2 control-label">นามสกุล</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="lname" value="<?= $member->mem_lname ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">เพศ <small> *</small></label>
-                        <div class="col-sm-3">
-                            <select class="form-control input-lg" name="sex" required>
-                                <option value="" selected>-- กรุณาเลือก --</option>
-                                <?php $genders = Member::gender() ?>
-                                <?php foreach ($genders as $key => $gender) { ?>
-                                    <?php if ($member->mem_sex == $key) { ?>
-                                        <option value="<?= $key ?>" selected><?= $gender ?></option>
-                                    <?php } else { ?>
-                                        <option value="<?= $key ?>"><?= $gender ?></option>
-                                    <?php } ?>
-                                <?php } ?>                                                                
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" class="col-sm-2 col-sm-2 control-label">โทรศัพท์ <small> *</small></label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control input-lg" name="phone" maxlength="10" value="<?= $member->mem_phone ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="col-sm-2 col-sm-2 control-label">อีเมลล์</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="email" value="<?= $member->mem_email ?>">
-                        </div>
-                    </div>
-
-                    <?php if (!empty($profile) && $profile) { ?>
-                        <div class="form-group">
-                            <label for="phone" class="col-sm-2 col-sm-2 control-label">ที่อยู่</label>
-                            <div class="col-sm-8">
-                                <textarea class="form-control input-lg" name="address" rows="4"><?= $member->mem_address ?></textarea>
-                            </div>
-                        </div>
-                    <?php } ?>
-
-
-                </div><!-- col-lg-12-->      	
-            </div><!-- /row -->
-        </div>
-        <div class="panel-footer">
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                    <button type="submit" class="btn btn-success">
-                        <i class="glyphicon glyphicon-ok-sign"></i> ลงทะเบียน
-                    </button>
-                    <?php if (empty($profile)) { ?>
-                        <a href="<?= Yii::app()->createUrl("site/login") ?>" class="btn btn-warning btn-sm">
-                            <i class="glyphicon glyphicon-arrow-left"></i> กลับเพื่อไป Login
-                        </a>
-                    <?php } ?>
                 </div>
-            </div>  
+                <div class="field">
+                    <label for="confirm_password" class="col-sm-2 col-sm-2 control-label">confirm password <small> *</small></label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control input-lg" name="confirm_password" id="confirm_password"  value="<?= $member->mem_password ?>">
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+
+        <div class="field">
+            <label for="fname">ชื่อจริง <small> *</small></label>
+            <input type="text" class="form-control input-lg" name="fname" value="<?= $member->mem_fname ?>">
         </div>
-    </div>
-</form>
+        <div class="field">
+            <label for="lname">นามสกุล</label>
+            <input type="text" class="form-control" name="lname" value="<?= $member->mem_lname ?>">
+        </div>
+        <div class="field">
+            <label>เพศ <small> *</small></label>
+            <select class="ui dropdown" name="sex" required>
+                <option value="" selected>-- กรุณาเลือก --</option>
+                <?php $genders = Member::gender() ?>
+                <?php foreach ($genders as $key => $gender) { ?>
+                    <?php if ($member->mem_sex == $key) { ?>
+                        <option value="<?= $key ?>" selected><?= $gender ?></option>
+                    <?php } else { ?>
+                        <option value="<?= $key ?>"><?= $gender ?></option>
+                    <?php } ?>
+                <?php } ?>                                                                
+            </select>
+        </div>
+        <div class="field">
+            <label for="phone">โทรศัพท์ <small> *</small></label>
+            <input type="text" class="form-control input-lg" name="phone" maxlength="10" value="<?= $member->mem_phone ?>">
+        </div>
+        <div class="field">
+            <label for="email">อีเมลล์</label>
+            <input type="text" class="form-control" name="email" value="<?= $member->mem_email ?>">
+        </div>
+
+        <?php if (!empty($profile) && $profile) { ?>
+            <div class="field">
+                <label for="phone" class="col-sm-2 col-sm-2 control-label">ที่อยู่</label>
+                <textarea class="form-control input-lg" name="address" rows="4"><?= $member->mem_address ?></textarea>
+            </div>
+        <?php } ?>
+        <div class="actions">
+            <button type="submit" class="ui button green"><i class="save icon"></i> ลงทะเบียน</button>
+            <?php if (empty($profile)) { ?>
+                <a href="<?= Yii::app()->createUrl("site/login") ?>" class="ui button orange">
+                    <i class="glyphicon glyphicon-arrow-left"></i> กลับเพื่อไป Login
+                </a>
+            <?php } ?>
+        </div>
+    </form>
+</div>
 
 <script type = "text/javascript" >
     $.validator.addMethod("regex", function (value, element, regexp) {

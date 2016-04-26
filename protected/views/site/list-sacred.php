@@ -52,7 +52,6 @@ $baseUrl = Yii::app()->baseUrl;
                             </td>
                             <td style="width: 15%">
                                 <div class="inline fields">
-                                    <label for="options<?= $object->obj_id ?>">สถานะ</label>
                                     <div class="field">
                                         <div class="ui radio checkbox <?= ($object->obj_status == 0 ? 'active' : '') ?>" 
                                              onclick="changeSacedStatus(<?= $object->obj_id ?>, 0)">

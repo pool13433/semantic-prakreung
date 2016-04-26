@@ -104,10 +104,14 @@ if (!empty($sacred->obj_img)) {
                     <td><?= $object->obj_comment ?></td>
                     <td style="text-align: center"><?= $object->count_img ?></td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/index/' . $object->obj_id) ?>" class="ui button small blue">แก้ไข</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/index/' . $object->obj_id) ?>" class="ui button small blue labeled icon">
+                            <i class="pencil icon"></i> แก้ไข
+                        </a>
                     </td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/objectDelete/' . $object->obj_id) ?>" class="ui button small red" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/objectDelete/' . $object->obj_id) ?>" class="ui button small red labeled icon" onclick="return confirm('ยืนยันการลบ')">
+                            <i class="remove icon"></i> ลบ
+                        </a>
                     </td>
                 </tr>
             <?php } ?>

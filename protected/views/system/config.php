@@ -25,12 +25,8 @@
                 <label><?= $config->unit ?></label>
             </div>
         <?php } ?>
-        <div class="form-group">
-            <div class="col-lg-4 col-lg-offset-2 col-md-10 col-sm-10 col-xs-10">
-                <button type="submit" class="btn btn-success">
-                    <i class="glyphicon glyphicon-ok"></i> บันทึก
-                </button>
-            </div>
+        <div class="actions">
+           <button type="submit" class="ui button green"><i class="save icon"></i> บันทึก</button>
         </div>
     </form>
 </div>

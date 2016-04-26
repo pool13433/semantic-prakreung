@@ -34,10 +34,14 @@
                     <td><?= $type->type_id ?></td>
                     <td><?= $type->type_name ?></td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/indexType/' . $type->type_id) ?>" class="ui button small blue">แก้ไข</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/indexType/' . $type->type_id) ?>" class="ui button small blue labeled icon">
+                            <i class="pencil icon"></i> แก้ไข
+                        </a>
                     </td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/typeDelete/' . $type->type_id) ?>" class="ui button small red" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/typeDelete/' . $type->type_id) ?>" class="ui button small red" onclick="return confirm('ยืนยันการลบ')">
+                            <i class="remove icon"></i> ลบ
+                        </a>
                     </td>
                 </tr>
             <?php } ?>

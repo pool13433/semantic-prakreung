@@ -34,10 +34,13 @@
                     <td><?= $region->reg_id ?></td>
                     <td><?= $region->reg_name ?></td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/indexRegion/' . $region->reg_id) ?>" class="ui button small blue">แก้ไข</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/indexRegion/' . $region->reg_id) ?>" class="ui button small blue labeled icon">
+                            <i class="pencil icon"></i> แก้ไข</a>
                     </td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/regionDelete/' . $region->reg_id) ?>" class="ui button small red" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/regionDelete/' . $region->reg_id) ?>" class="ui button small red labeled icon" onclick="return confirm('ยืนยันการลบ')">
+                            <i class="remove icon"></i> ลบ
+                        </a>
                     </td>
                 </tr>
             <?php } ?>

@@ -1,49 +1,33 @@
-<form  id="form-change" class="form-horizontal style-form form-lg">
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            <h3><i class="fa fa-angle-right"></i> แก้ไชช้อมูลรหัสผ่านใหม่</h3>
+<h2 class="ui top attached header">
+    แก้ไชช้อมูลรหัสผ่านใหม่
+</h2>
+<div class="ui attached segment orange">
+    <form  id="form-change" class="ui form">
+        <div class="field">
+            <label for="username">username<small> *</small></label>
+            <input type="hidden" name="id" value="<?= $member->mem_id ?>">
+            <input type="text" readonly name="username" id="username" value="<?= $member->mem_username ?>">
         </div>
-        <div class="panel-body">
-            <div class="row mt">
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label for="username" class="col-sm-2 col-sm-2 control-label">username<small> *</small></label>
-                        <div class="col-sm-4">
-                            <input type="hidden" name="id" value="<?= $member->mem_id ?>">
-                            <input type="text" class="form-control input-lg" readonly
-                                   name="username" id="username" value="<?= $member->mem_username ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="col-sm-2 col-sm-2 control-label">รหัสผ่าน เก่า <small> *</small></label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control input-lg" name="passwordOld" id="passwordOld"  value="<?= $member->mem_password ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="col-sm-2 col-sm-2 control-label">รหัสผ่าน ใหม่<small> *</small></label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control input-lg" name="passwordNew" id="passwordNew"  value="<?= $member->mem_password ?>">
-                        </div>
-                        <label for="confirm_password" class="col-sm-2 col-sm-2 control-label">ยืนยันรหัสผ่านใหม่ อีกครั้ง <small> *</small></label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control input-lg" name="confirmPasswordNew" id="confirmPasswordNew"  value="<?= $member->mem_password ?>">
-                        </div>
-                    </div>
-                </div>
+        <div class="field">
+            <label for="password">รหัสผ่าน เก่า <small> *</small></label>
+            <input type="password" name="passwordOld" id="passwordOld"  value="<?= $member->mem_password ?>">
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label for="password">รหัสผ่าน ใหม่<small> *</small></label>
+                <input type="password" name="passwordNew" id="passwordNew"  value="<?= $member->mem_password ?>">
+            </div>
+            <div class="field">
+                <label for="confirm_password" >ยืนยันรหัสผ่านใหม่ อีกครั้ง <small> *</small></label>
+                <input type="password" name="confirmPasswordNew" id="confirmPasswordNew"  value="<?= $member->mem_password ?>">
             </div>
         </div>
-        <div class="panel-footer">
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                    <button type="submit" class="btn btn-success">
-                        <i class="glyphicon glyphicon-ok-sign"></i> เปลี่ยนรหัสผ่าน
-                    </button>
-                </div>
-            </div>  
+        <div class="actions">
+            <button type="submit" class="ui button green"><i class="save icon"></i> เปลี่ยนรหัสผ่าน</button>
+            <button type="reset" class="ui button orange"><i class="remove icon"></i> ล้างค่า</button>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#passwordOld').focusout(function () {

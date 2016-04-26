@@ -1,5 +1,5 @@
 <h2 class="ui top attached header">
-    จัดการประเภทวัตถุมงคล
+    จัดการจังหวัด
     <a href="<?= Yii::app()->createUrl('sacred/indexProvince') ?>" class="ui button small blue"> 
         <i class="plus icon"></i> ข้อมูลใหม่
     </a>
@@ -55,10 +55,14 @@
                     <td><?= $province->pro_name_th ?></td>
                     <td><?= $province->region->reg_name ?></td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/indexProvince/' . $province->pro_id) ?>" class="ui button small blue">แก้ไข</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/indexProvince/' . $province->pro_id) ?>" class="ui button small blue labeled icon">
+                           <i class="pencil icon"></i> แก้ไข
+                        </a>
                     </td>
                     <td>
-                        <a href="<?= Yii::app()->createUrl('sacred/provinceDelete/' . $province->pro_id) ?>" class="ui button small red" onclick="return confirm('ยืนยันการลบ')">ลบ</a>
+                        <a href="<?= Yii::app()->createUrl('sacred/provinceDelete/' . $province->pro_id) ?>" class="ui button small red labeled icon" onclick="return confirm('ยืนยันการลบ')">
+                           <i class="remove icon"></i>  ลบ
+                        </a>
                     </td>
                 </tr>
             <?php } ?>

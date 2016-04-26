@@ -1,9 +1,18 @@
-<div class="ui small menu fixed">
-    <a href="#" class="sidebar-toggle active item" data-visible="open">
+<div class="ui small menu fixed stackable">
+<!--    <a href="#" class="sidebar-toggle active item" data-visible="open">
         <i class="bordered inverted teal sidebar icon large"></i>
+    </a>-->
+    <a class="item" href="<?= Yii::app()->createUrl('site/index') ?>">
+        <i class="home icon large circular"></i>
+        สุดยอดพระเครื่อง
     </a>
-    <a class="item">
-        Messages
+    <a class="item" href="<?= Yii::app()->createUrl('site/news') ?>">
+        <i class="sitemap icon"></i>
+        ข่าวสารเกี่ยวกับพระเครื่อง
+    </a>
+    <a class="item" href="<?= Yii::app()->createUrl('site/upload') ?>">
+        <i class="chart icon"></i>
+        อยากปล่อยเช่า
     </a>
     <div class="right menu">
         <?php if (empty(Yii::app()->session['member'])) { ?>
